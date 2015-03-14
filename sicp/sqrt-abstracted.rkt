@@ -1,4 +1,4 @@
-#lang planet neil/sicp
+#lang racket
 
 ; 1.1.8 Abstraction: Newton's square root method
 

@@ -1,4 +1,4 @@
-#lang planet neil/sicp
+#lang racket
 
 ; 1.8 Newton's cube root method
 

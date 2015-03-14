@@ -1,4 +1,4 @@
-#lang planet neil/sicp
+#lang racket
 ; author: Thirumal Venkat
 
 ; I'm assuming n >= 0, always

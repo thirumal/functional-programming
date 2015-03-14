@@ -1,4 +1,4 @@
-#lang planet neil/sicp
+#lang racket
 
 ; 1.1.7 Program to find square root using Newton's method
 
