@@ -22,6 +22,8 @@
 
 (define (coin-change money) (count money 5))
 
+; TODO: Write an iterative routine do so the same
+
 (coin-change 1)
 (coin-change 10)
 (coin-change 100)
