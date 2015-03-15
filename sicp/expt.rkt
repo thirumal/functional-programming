@@ -18,6 +18,7 @@
 
 ; Helper function to find the square of a number
 (define (square x) (* x x))
+(define (halve x) (/ x 2))
 
 ; Recursive O(log n) procedure
 (define (fast-expt-recr a n)
@@ -28,11 +29,11 @@
 ; Iterative O(log n) procedure
 ; Also exercise 1.16 
 (define (fast-expt-iter a n)
-  (define (iter acc count)
-    (cond ((= count 0) acc)
-          ((even? n) (iter (* acc acc) (/ count 2)))
-          (else (iter (* a acc) (- count 1)))))
-  (iter 1 n))
+  (define (iter even-acc odd-acc count)
+    (cond ((= count 0) odd-acc)
+          ((even? count) (iter (square even-acc) odd-acc (halve count)))
+          (else (iter even-acc (* even-acc odd-acc) (- count 1)))))
+  (iter a 1 n))
 
 ; Tests
 (expt-recr 10 0)
@@ -48,4 +49,4 @@
 (expt-recr 2 4)
 (expt-iter 3 4)
 (fast-expt-recr 5 4)
-(fast-expt-recr 3 5)
+(fast-expt-iter 3 5)
