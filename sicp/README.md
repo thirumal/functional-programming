@@ -15,6 +15,8 @@
 * Greatest common divisor
 * Primality testing algorithms
 * Higher Order procedures - Sum sigma
-* Simpon's integration
+* Simpson's integration
 * Higher Order procedures - Product Pi
 * Accumulate and filtered Accumulate design patterns
+* Lambda functions
+* Find roots of f(x) using half interval method
