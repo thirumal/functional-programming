@@ -7,16 +7,19 @@
 (define (average x y) (/ (+ x y) 2))
 (define (square x) (* x x))
 (define (cube x) (* x x x))
+(define (log2 x) (/ (log x) (log 2)))
+; dx
+(define dx 0.00001)
+
 ; Fixed point function (see fixed-function.rkt)
 (define (fixed-point f first-guess)
-  (define (close-enough? x1 x2)
-    (define tolerance 0.00001)
-    (< (abs (- x1 x2)) tolerance))
+  (define (close-enough? v1 v2)
+    (< (abs (- v1 v2)) dx))
   (define (try guess)
-    (let ((next-guess (f guess)))
-      (if (close-enough? guess next-guess)
-          next-guess
-          (try next-guess))))
+    (let ((next (f guess)))
+      (if (close-enough? guess next)
+          next
+          (try next))))
   (try first-guess))
 
 ; Average damping
@@ -36,13 +39,13 @@
 (sqrt-ad 2)
 
 ; Cube root by average damping
+; Only because we average damp here, we're able to converge
 (define (cbrt-ad x)
   (fixed-point (average-damp (lambda (y) (/ x (square y)))) 1.0))
 (cbrt-ad 27)
 
 ; General Newton's method
-; dx
-(define dx 0.00001)
+;dx already defined
 
 ; Derivative Dg(x) = D(g(x)) = (g(x + dx) - g(x))/dx
 (define (deriv g)
@@ -135,10 +138,84 @@
 ; write a function to form the nth repeated application of f
 ; f(f(...(f(x))...))
 (define (repeated f n)
-  (define (iter f i)
+  (define (iter result i)
     (if (= i n)
-        f
-        (iter (compose f f) (+ i 1))))
+        result
+        (iter (compose f result) (+ i 1))))
   (iter f 1))
 ; Test for 1.43
 ((repeated square 2) 5)
+
+; Exercise 1.44
+; Function smoothing
+; If f is a function, dx is some small number
+; Define a function that returns a smoothed value at x, given dx
+; dx has been defined above
+(define (smooth f dx)
+  (lambda (x) (/ (+ (f (- x dx))
+                    (f x)
+                    (f (+ x dx)))
+                 3)))
+
+; Repeated smoothening, exercise 1.44 continued
+(define (smooth-n-fold f dx n) (repeated (smooth f dx) n))
+
+; Test for 1.44
+((smooth sin 0.7) (/ pi 2))
+((smooth-n-fold sin 0.7 2) (/ pi 2))
+
+; Exercise 1.45
+; Multi fold average damping and finding nth root of x
+; For nth root, the number of dampings required
+; 2, 3 = 1
+; 4, 5, 6, 7, = 2
+; 8, 9, .... , 15 = 3
+; 16, ..., 31 = 4
+; 32, ..., 63 = 5
+; 64, ..., 127 = 6
+; For n you need floor(log2(n))
+;
+; Note: I could not test nth-root(2^1024, 1024).
+; I was waiting for about a minute or two on execution.
+; But, I'm assuming the pattern I've recognized to hold
+; good till 1023 will stand for 1024 as well (fingers crossed)
+; Maybe I should increase my dx?
+;
+(define (nth-root x n)
+  (fixed-point-of-transform (lambda (y) (/ x (expt y (- n 1))))
+                            (repeated average-damp (floor (log2 n)))
+                            1.0))
+; Tests for Exercise 1.45
+(nth-root (expt 2 24) 24)
+
+; Exercise 1.46
+; The guess tester function returns #t if guess is good enough
+; else it returns #f, improver function improves the guess
+(define (iterative-improve guess-tester improver)
+  (define (iter old-guess)
+    (let ((new-guess (improver old-guess)))
+      (if (guess-tester old-guess new-guess)
+          new-guess
+          (iter new-guess))))
+  iter)
+
+; Guess Tester function
+(define (good-enough? x y)
+  (< (abs (- x y)) dx))
+
+; Square root iterative improvement way
+(define (sqrt-ii x)
+  ((iterative-improve good-enough?
+                      (average-damp (lambda (y) (/ x y))))
+   1.0))
+(sqrt-ii 2)
+
+; Fixed point function using iterative improvement
+(define (fixed-point-ii f first-guess)
+  ((iterative-improve good-enough? f) first-guess))
+
+; Testing the fixed-point-ii function
+; Square root by average damping
+(define (sqrt-ad-ii x)
+  (fixed-point-ii (average-damp (lambda (y) (/ x y))) 1.0))
+(sqrt-ad-ii 2)

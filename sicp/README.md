@@ -44,3 +44,5 @@ Exercises and textbook examples
 	* Solve cubic equations of the form ![x^3 + ax^2 + bx + c](http://latex.codecogs.com/png.latex?%5Cinline%20x%5E3%20&plus;%20ax%5E2%20&plus;%20bx%20&plus;%20c) by Newton's method
 	* Composition of functions: ![f o g(x)](http://latex.codecogs.com/png.latex?%5Cinline%20f%20%5Ccirc%20g%20%28x%29)
 	* Repeated application of a function: ![f(f(...(f(x))...))](http://latex.codecogs.com/png.latex?%5Cinline%20f%28f%28...%28f%28x%29%29...%29%29) or in other words ![f o f o ... f(x)](http://latex.codecogs.com/png.latex?%5Cinline%20f%20%5Ccirc%20f%20%5Ccirc%20...%20%5Ccirc%20f%28x%29)
+	* Approximating ![nroot(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%5Bn%5D%7Bx%7D) by repeated average damping
+	* Iterative improvement design pattern
