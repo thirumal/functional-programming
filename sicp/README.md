@@ -35,3 +35,12 @@ Exercises and textbook examples
 	* Approximating ![phi](http://latex.codecogs.com/png.latex?%5Cinline%20%5Cphi) (Fibonacci golden ratio)
 	* Approximating ![e](http://latex.codecogs.com/png.latex?%5Cinline%20%5Ctextup%7Be%7D)
 	* Approximating ![tan](http://latex.codecogs.com/png.latex?%5Cinline%20%5Ctan)
+* Procedures as return values
+	* Average damping, ![(x + f(x))/2](http://latex.codecogs.com/png.latex?%5Cinline%20%5Cfrac%7Bx%20&plus;%20f%28x%29%7D%7B2%7D)
+	* Finding the derivative, ![d/dx(f(x))](http://latex.codecogs.com/png.latex?%5Cinline%20%5Cfrac%7B%5Cmathrm%7Bd%7D%7D%7B%5Cmathrm%7Bd%7D%20x%7Df%28x%29)
+	* Newton's transform, ![Newton's transform equation](http://latex.codecogs.com/png.download?%5Cinline%20x_%7Bn+1%7D%20%3D%20x_n%20-%20%5Cfrac%7Bg%28x%29%7D%7B%5Cfrac%7B%5Cmathrm%7Bd%7D%20g%28x%29%7D%7B%5Cmathrm%7Bd%7D%20x%7D%7D)
+	* Approximating ![nroot(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%5Bn%5D%7Bx%7D) by Newton's method (Newton's transform)
+	* Fixed point of a transform
+	* Solve cubic equations of the form ![x^3 + ax^2 + bx + c](http://latex.codecogs.com/png.latex?%5Cinline%20x%5E3%20&plus;%20ax%5E2%20&plus;%20bx%20&plus;%20c) by Newton's method
+	* Composition of functions: ![f o g(x)](http://latex.codecogs.com/png.latex?%5Cinline%20f%20%5Ccirc%20g%20%28x%29)
+	* Repeated application of a function: ![f(f(...(f(x))...))](http://latex.codecogs.com/png.latex?%5Cinline%20f%28f%28...%28f%28x%29%29...%29%29) or in other words ![f o f o ... f(x)](http://latex.codecogs.com/png.latex?%5Cinline%20f%20%5Ccirc%20f%20%5Ccirc%20...%20%5Ccirc%20f%28x%29)
