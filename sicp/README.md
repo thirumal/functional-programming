@@ -1,4 +1,8 @@
-# Chapter 1: Contents
+# Structure and Interpretation of Computer Programs
+
+Exercises and textbook examples
+
+## Chapter 1
 
 * Approximating ![sqrt(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%7Bx%7D) by Newton's method
 * Approximating ![cube-root(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%5B3%5D%7Bx%7D) by Newton's method
