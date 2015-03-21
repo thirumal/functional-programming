@@ -14,13 +14,14 @@
 ; Half interval function to find the root of f(x)
 (define (half-interval f a b tolerance)
   ; See if the guess is good enough?
-  (define (good-enough? guess)
-    (< (abs (f guess)) tolerance))
+  (define (good-enough? test-value)
+    (< (abs test-value) tolerance))
   ; Iterative function
   (define (iter minimum maximum guess)
-    (cond ((good-enough? guess) guess)
-          ((positive? (f guess)) (iter minimum guess (average minimum guess)))
-          (else (iter guess maximum (average guess maximum)))))
+    (let ((test-value (f guess)))
+    (cond ((good-enough? test-value) guess)
+          ((positive? test-value) (iter minimum guess (average minimum guess)))
+          (else (iter guess maximum (average guess maximum))))))
   (iter a b (average a b)))
 
 ; Tests
