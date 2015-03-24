@@ -2,7 +2,7 @@
 
 Exercises and textbook examples
 
-## Chapter 1
+## Chapter 1: Building Abstractions with Procedures
 
 * Approximating ![sqrt(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%7Bx%7D) by Newton's method
 * Approximating ![cube-root(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%5B3%5D%7Bx%7D) by Newton's method
@@ -46,3 +46,12 @@ Exercises and textbook examples
 	* Repeated application of a function: ![f(f(...(f(x))...))](http://latex.codecogs.com/png.latex?%5Cinline%20f%28f%28...%28f%28x%29%29...%29%29) or in other words ![f o f o ... f(x)](http://latex.codecogs.com/png.latex?%5Cinline%20f%20%5Ccirc%20f%20%5Ccirc%20...%20%5Ccirc%20f%28x%29)
 	* Approximating ![nroot(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%5Bn%5D%7Bx%7D) by repeated average damping
 	* Iterative improvement design pattern
+
+## Chapter 2: Building Abstractions with Data
+
+* Representing rational numbers as pairs and arithmetic operations on them
+* Representing point as pairs of numbers
+	* Representing a line segment as pair of points
+	* Midpoint of a line segment
+	* Representing a rectangle as a pair of points
+	* Area and the perimeter of a rectangle
