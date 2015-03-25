@@ -49,9 +49,15 @@ Exercises and textbook examples
 
 ## Chapter 2: Building Abstractions with Data
 
-* Representing rational numbers as pairs and arithmetic operations on them
-* Representing point as pairs of numbers
+* Pairs
+	* Representing rational numbers as a pair of numbers
+	* Rational number arithmetic
+	* Representing point as pairs of numbers
 	* Representing a line segment as pair of points
 	* Midpoint of a line segment
 	* Representing a rectangle as a pair of points
 	* Area and the perimeter of a rectangle
+* Various Representation of pairs
+	* Procedural representations of pairs
+	* Exponentiation representation of pairs
+* Church Numerals
