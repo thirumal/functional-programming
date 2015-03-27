@@ -61,3 +61,8 @@ Exercises and textbook examples
 	* Procedural representations of pairs
 	* Exponentiation representation of pairs
 * Church Numerals
+* Interval arithmetic
+	* Addition, subtraction, multiplication and division of intervals
+	* Fast interval multiplication algorithm
+	* Width of an interval
+
