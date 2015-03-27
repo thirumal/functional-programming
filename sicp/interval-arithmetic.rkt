@@ -40,8 +40,8 @@
 ; Method to subtract two intervals
 ; Intuition: If x varies from [a,b] and y varies from [c,d]
 ; x - y varies from [a - d, b - c]
-; For simplicity think a > b > d > c
-; Number line: ------c----d-----b-----a-----
+; For simplicity think b > a > d > c
+; Number line: ------c----d-----a-----b-----
 ; We can observe that x - y is [a - d, b - c]
 ; An alternate representation of x - y
 ; [a,b] - [c,d] = [a,d] + [-d,-c]
