@@ -63,12 +63,12 @@
     (make-interval (min p1 p2 p3 p4)
                    (max p1 p2 p3 p4))))
 
-; Exercise 2.9, add test for zero divisor
+; Exercise 2.10, add test for a mixed interval in divisor
 ; Method to divide two intervals
 ; Number line: -----c------d-------b-----a--------
 ; Also figures out if y spans 0 [c,d] has 0 in the middle
 (define (div-interval x y)
-  (if (and (<= (lower-bound y) 0) (>= (upper-bound y) 0))
+  (if (and (< (lower-bound y) 0) (> (upper-bound y) 0))
       (error "The bounds of the second interval cannot span a zero: "
              (print-interval y))
       (mul-interval x
@@ -79,7 +79,7 @@
 ; Exercise 2.9
 ; Width of an interval
 ; Half the difference between its upper and lower bounds
-(define (width-interval inv)
+(define (width inv)
   (/ (- (upper-bound inv) (lower-bound inv)) 2))
 
 ; Width is closed under addition and subtraction of intervals
@@ -88,8 +88,8 @@
 ; Because the min and the max can be chosen from any argument
 ; depending on the argument passed
 
-; Exercise 2.10
-;
+; Exercise 2.11
+; Fast multiplication algorithm to multiply two intervals
 ; From the paper we classify an interval [x,y] into 4 types
 ; It is to be noted that x <= y in all the below cases
 ; M: Mixed, x < 0 < y
@@ -144,14 +144,69 @@
                          (else "unkown interval type: " (print-interval x))))
           (else "unkown interval type: " (print-interval x)))))
 
-; Tests
+; Make an interval by using a center of an interval and the error width
+(define (make-center-width c w)
+  (make-interval (- c w) (+ c w)))
+; Center of the interval
+(define (center i)
+  (/ (+ (lower-bound i) (upper-bound i)) 2))
+; Width has already been defined as part of Exercise 2.9
+
+; Define an interval given center and the percentage error width
+; For 5 +/- 5% you pass (make-center-percent 5 5)
+(define (make-center-percent c p)
+  (let ((w (* c (/ p 100.0))))
+    (make-center-width c w)))
+
+; Percentage error width calculated given the interval
+(define (percent i)
+  (* (/ (width i) (center i)) 100.0))
+
+; Exercise 2.13
+;
+; Simple approximation to percentage tolerance of the product of
+; two intervals defined in terms of tolerance of the factors
+;
+; Pass two tolerances in terms of percent (out of 100)
+; And assume that we have positive intervals
+; [a,b] * [c,d] = [a*c, b*d]
+;
+; We have [a,b] represented using (c1,p1) [c1 - (p1/c1*100), c1 + (p1/c1*100)]
+; and [c,d] represented using (c2,p2) = [c2 - (p2/c2*100), c2 + (p2/c2*100)]
+;
+; Therefore the product [a * c, b * d] will have
+;
+; = [(c1-(p1/c1*100))*(c2-(p2/c2*100)), (c1+(p1/c1*100))*(c2 +(p2/c2*100))]
+;
+; = [c1*c2 - ((c1*p2)/(c2*100)) - ((p1*c2)/(c1*100)) + (p1*p2)(c1*c2*100*100),
+;    c1*c2 + ((c1*p2)/(c2*100)) + ((p1*c2)/(c1*100)) + (p1*p2)(c1*c2*100*100)]
+;
+; = [(c1*c2)(1 - (p1 + p2)/100 + p1*p2/100^2),
+;    (c1*c2)(1 + (p1 + p2)/100 + p1*p2/100^2)]
+;
+; With the assumption that percentages are small we can drop p1*p2/100^2
+(define (product-of-tolerances p1 p2) (+ (percent i1) (percent i2)))
+
+; Tests for initial exercises
 (define inv1 (make-interval -3 -2))
 (display "Interval 1: ")
 (print-interval inv1)
+(display "Center 1: ")
+(center inv1)
+(display "Width 1: ")
+(width inv1)
+(display "Percentage 1: ")
+(percent inv1)
 
 (define inv2 (make-interval -7 -5))
 (display "Interval 2: ")
 (print-interval inv2)
+(display "Center 2: ")
+(center inv2)
+(display "Width 2: ")
+(width inv2)
+(display "Percentage 2: ")
+(percent inv2)
 
 (display "Add Intervals:")
 (print-interval (add-interval inv1 inv2))
@@ -164,9 +219,11 @@
 
 (display "Divide Intervals: ")
 (print-interval (div-interval inv2 inv1))
+; Test for Exercise 2.10
 ; (div-interval inv2 (make-interval 0 1)) ; Error when uncommented
 
-; Tests for fast multiplication
+; Tests for fast multiplication (exercise 2.11)
+(newline)
 (display "Fast multiplication test start\n")
 ; P * P
 (let ((a (make-interval 5 7))
@@ -217,3 +274,49 @@
   (equal? (mul-interval a b) (fast-mul-interval a b)))
 ; Done
 (display "Fast multiplication test end\n")
+
+; Test for 2.12
+(newline)
+(define cw-inv (make-center-width 10 1))
+(display "CW interval: ")
+(print-interval cw-inv)
+(display "CW Center: ")
+(center cw-inv)
+(display "CW Width: ")
+(width cw-inv)
+(display "CW Percentage: ")
+(percent cw-inv)
+
+(newline)
+(define cp-inv (make-center-percent 10 10))
+(display "CP interval: ")
+(print-interval cp-inv)
+(display "CP Center: ")
+(center cp-inv)
+(display "CP Width: ")
+(width cp-inv)
+(display "CW Percentage: ")
+(percent cp-inv)
+
+; Test for exercise 2.13
+(newline)
+(define i1 (make-center-percent 5 2))
+(display "I1: ")
+(print-interval i1)
+(display "I1 Percentage: ")
+(percent i1)
+
+(define i2 (make-center-percent 6 3))
+(display "I2: ")
+(print-interval i2)
+(display "I2 Percentage: ")
+(percent i2)
+
+(define i1_i2 (mul-interval i1 i2))
+(display "I1 * I2: ")
+(print-interval i1_i2)
+(display "I1 * I2 real percentage: ")
+(percent i1_i2)
+(display "Approximated percentage: ")
+(product-of-tolerances i1 i2)
+

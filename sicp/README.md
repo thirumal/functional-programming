@@ -65,4 +65,5 @@ Exercises and textbook examples
 	* Addition, subtraction, multiplication and division of intervals
 	* Fast interval multiplication algorithm
 	* Width of an interval
+	* Approximating the product of tolerances
 
