@@ -64,6 +64,6 @@ Exercises and textbook examples
 * Interval arithmetic
 	* Addition, subtraction, multiplication and division of intervals
 	* Fast interval multiplication algorithm
-	* Width of an interval
+	* Center, width (tolerance) and the percentage width of an interval
 	* Approximating the product of tolerances
 

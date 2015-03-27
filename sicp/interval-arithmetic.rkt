@@ -187,11 +187,12 @@
 ; With the assumption that percentages are small we can drop p1*p2/100^2
 (define (product-of-tolerances p1 p2) (+ (percent i1) (percent i2)))
 
+
 ; Tests for initial exercises
 (define inv1 (make-interval -3 -2))
 (display "Interval 1: ")
 (print-interval inv1)
-(display "Center 1: ")
+(display "Center 1: ") ; Exercise 2.9
 (center inv1)
 (display "Width 1: ")
 (width inv1)
@@ -320,3 +321,68 @@
 (display "Approximated percentage: ")
 (product-of-tolerances i1 i2)
 
+; Exercise 2.14
+; Different evaluations of intervals of the same expression leads to different
+; results
+;
+(newline)
+(display "Show that different evaluations lead to different results:\n")
+(define r1 (make-center-percent 100 5))
+(display "R1: ")
+(print-interval r1)
+(display "R1 Percentage: ")
+(percent r1)
+(define r2 (make-center-percent 200 2))
+(display "R2: ")
+(print-interval r2)
+(display "R2 Percentage: ")
+(percent r2)
+
+; First way of evauluation
+; Notice more error than second evaluation
+(define (par1 r1 r2)
+  (div-interval (mul-interval r1 r2)
+                (add-interval r1 r2)))
+(define res1 (par1 r1 r2))
+(display "Res1: ")
+(print-interval res1)
+(display "Res1 Percentage: ")
+(percent res1)
+
+; Second way of evaluation
+; Notice: More tightly bound, less error prone
+(define (par2 r1 r2)
+  (let ((one (make-interval 1 1)))
+    (div-interval
+     one
+     (add-interval (div-interval one r1)
+                   (div-interval one r2)))))
+(define res2 (par2 r1 r2))
+(display "Res2: ")
+(print-interval res2)
+(display "Res2 Percentage: ")
+(percent res2)
+
+; Notice the imperfection when we divide an interval by itself
+(define r1byr1 (div-interval r1 r1))
+(display "R1/R1: ")
+(print-interval r1byr1)
+(display "R1/R1 Percentage: ")
+(percent r1byr1)
+
+(define r1byr2 (div-interval r1 r2))
+(display "R1/R2: ")
+(print-interval r1byr2)
+(display "R1/R2 Percentage: ")
+(percent r1byr2)
+
+; Exercise 2.15
+; The observation is correct, if an interval is mentioned in the expression
+; more than once the error is more.
+
+; Exercise 2.16
+; Dependency issue: http://goo.gl/VXaKpF (Wikipedia article)
+; You can see in the text that if an interval is used more than once,
+; we can land up into dependency problem. Not all functions can be rewritten
+; so that we mention that interval only once in the expression.
+; This is a HARD research problem.
