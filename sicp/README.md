@@ -66,4 +66,12 @@ Exercises and textbook examples
 	* Fast interval multiplication algorithm
 	* Center, width (tolerance) and the percentage width of an interval
 	* Approximating the product of tolerances
-
+* Sequences and Lists
+	* List as a combination of pairs
+	* Nth element of a list
+	* Length of a list
+	* Appending a list behind another
+	* Reversing a list
+	* Coin change problem revisited
+	* Dotted tail notation
+	* Finding numbers of the same parity
