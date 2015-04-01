@@ -61,7 +61,7 @@ Exercises and textbook examples
 	* Procedural representations of pairs
 	* Exponentiation representation of pairs
 * Church Numerals
-* Interval arithmetic
+* Interval arithmetic ![\[a,b\]](http://latex.codecogs.com/png.latex?%5Cinline%20%5Ba%2Cb%5D)
 	* Addition, subtraction, multiplication and division of intervals
 	* Fast interval multiplication algorithm
 	* Center, width (tolerance) and the percentage width of an interval
@@ -73,5 +73,9 @@ Exercises and textbook examples
 	* Appending a list behind another
 	* Reversing a list
 	* Coin change problem revisited
-	* Dotted tail notation
+	* Dotted tail notation in Scheme
 	* Finding numbers of the same parity
+* `map` design pattern
+	* Scaling every element in a list
+	* Implementation of `map` function
+	* Implementation of the `for-each` design pattern
