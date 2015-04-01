@@ -8,3 +8,6 @@ This contains stuff I coded up while I was reading the [MIT SICP book](http://mi
 This contains stuff I coded up while I was working through
 [Functional Programming in Scala](https://www.coursera.org/course/progfun) Coursera course.
 This folder does not contain exercise solutions for the course, I don't want to contribute to feeding the cheaters.
+
+## scala-school
+Things I coded up when I was working through Twitter's [Scala School](http://twitter.github.io/scala_school/) tutorial
