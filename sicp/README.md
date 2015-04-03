@@ -87,4 +87,8 @@ Exercises and textbook examples
 	* Binary mobiles and computations
 		* Torque of a branch
 		* Balancedness of a binary mobile
-
+* `map` design pattern over trees
+	* Scaling a tree
+	* Squaring every element of tree
+	* Using `map` to abstract and in turn create `tree-map`
+	* Power set of a given set, ![P(S)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Cmathcal%20P%20%5Cleft%28%7BS%7D%5Cright%29)
