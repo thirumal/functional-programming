@@ -1,6 +1,6 @@
 #lang racket
 
-; Excercise: 1.3: Given three numbers a, b and c
+; Exercise: 1.3: Given three numbers a, b and c
 ; Find the sum of squares of the biggest two
 ; numbers
 (define (sum-square-max-of-two a b c)
