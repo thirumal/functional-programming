@@ -79,3 +79,12 @@ Exercises and textbook examples
 	* Scaling every element in a list
 	* Implementation of `map` function
 	* Implementation of the `for-each` design pattern
+* Hierarchical structures (trees)
+	* Representing a tree as a composite list
+	* Counting leaf nodes in a tree
+	* Deep-reversing a list/tree
+	* Flattening a composite list/tree
+	* Binary mobiles and computations
+		* Torque of a branch
+		* Balancedness of a binary mobile
+
