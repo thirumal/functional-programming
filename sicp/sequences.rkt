@@ -78,6 +78,9 @@
   (if (null? list1)
       list2
       (cons (car list1) (my-append-recr (cdr list1) list2))))
+; Test for recursive list append
+(display "Recursive list append: ")
+(my-append-recr (list 1 2 3 4) (list 5 6 7 8))
 
 ; Exercise 2.17
 ; The last element of a (non-empty) list
@@ -158,6 +161,7 @@
 (goo)
 (goo 1)
 (goo 1 2 3 4)
+(newline)
 
 ; Exercise 2.20
 ; A function that takes one or more integers and returns a list
@@ -177,6 +181,6 @@
            (iter (cons (car items) res) (cdr items)))
           (else (iter res (cdr items)))))
   (reverse (iter (list x) inputs)))
-
+(display "Same parity list problem:\n")
 (same-parity 1 2 3 4 5 6 7)
 (same-parity 2 3 4 5 6 7)
