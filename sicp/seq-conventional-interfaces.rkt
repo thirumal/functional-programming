@@ -1,0 +1,276 @@
+#lang racket
+
+; Helper routines
+(define (not-pair? x) (not (pair? x)))
+(define (square x) (* x x))
+(define (fib n)
+  (define (iter b a i)
+    (if (= i n)
+        a
+        (iter a (+ a b) (+ i 1))))
+  (iter 1 0 0))
+
+; Use of conventional interfaces
+
+; First let's take a look at a program
+; Modified count-leaves procedure
+; sum of square of only those leaves which are odd
+
+(define (sum-odd-squares tree)
+  (cond ((null? tree) 0)
+        ((not-pair? tree) (if (odd? tree) (square tree) 0))
+        (else (+ (sum-odd-squares (car tree))
+                 (sum-odd-squares (cdr tree))))))
+; Test for sum-odd-squares
+(display "Sum of odd leaf squares of a tree: ")
+(sum-odd-squares (list 1 2 (list 3 4 5 (list 6 7 8 9) 10 ) 11))
+
+; This can be conceptually thought of as:
+; enumerate: tree leaves -> filter: odd? -> map: square -> accumulate: +, 0
+
+; Another program...
+; Even fibonnaci numbers
+(define (even-fibs n)
+  (define (next k)
+    (if (> k n)
+        null
+        (let ((f (fib k)))
+          (if (even? f)
+              (cons f (next (+ k 1)))
+              (next (+ k 1))))))
+  (next 0))
+(display "Even fibonnaci numbers: ")
+(even-fibs 10)
+(newline)
+
+; This can be expressed as
+; enumerate: integers -> map: fib -> filter: even? -> accumulate: cons, () 
+
+; These could be expressed as the two recipes given after the programs,
+; but we need to structure our programs in such a way, the above hapazard
+; way of putting things together will only work for tiny programs
+
+; With this in mind, let's start making those generic procedures
+
+; We have map with us already
+
+; One implementation of the filter procedure (scheme built-in)
+(define (filter pred seq)
+  (if (null? seq)
+      null
+      (let ((head (car seq))
+            (tail (cdr seq)))
+        (if (pred head)
+            (cons head (filter pred tail))
+            (filter pred tail)))))
+; Test for our filter method
+(display "Test for filter, get only odd elements: ")
+(filter odd? (list 1 2 3 4 5))
+(newline)
+
+; Accumulate procedure
+(define (accumulate f init seq)
+  (if (null? seq)
+      init
+      (f (car seq) (accumulate f init (cdr seq)))))
+; Tests for accumulate procedure:
+(display "Test for accumulate procedure:\n")
+(display "Sum: ")
+(accumulate + 0 (list 1 2 3 4 5))
+(display "Product: ")
+(accumulate * 1 (list 1 2 3 4 5))
+(newline)
+
+; Enumerate interval
+(define (enumerate-interval low high)
+  (if (> low high)
+      null
+      (cons low (enumerate-interval (+ low 1) high))))
+; Test for enumerate interval
+(display "Enumerate an interval: ")
+(enumerate-interval 2 7)
+
+; Procedure to enumerate a tree
+(define (enumerate-tree tree)
+  (cond ((null? tree) null)
+        ((not-pair? tree) (list tree))
+        (else (append (enumerate-tree (car tree))
+                      (enumerate-tree (cdr tree))))))
+; Test for enumerating a tree
+(display "Enumerate a tree: ")
+(enumerate-tree (list 1 (list 2 (list 3 4) 5) 6))
+
+; Putting it all together
+; enumerate: tree leaves -> filter: odd? -> map: square -> accumulate: +, 0
+(define (sum-odd-squares-2 tree)
+  (accumulate + 0 (map square (filter odd? (enumerate-tree tree)))))
+
+; enumerate: integers -> map: fib -> filter: even? -> accumulate: cons, () 
+(define (even-fibs-2 n)
+  (accumulate cons null (map fib (filter even? (enumerate-interval 0 n)))))
+
+; Test for the above routines
+(display "Test for modularized, sum odd square leaves of a tree:\n")
+(sum-odd-squares-2 (list 1 2 (list 3 4 5 (list 6 7 8 9) 10 ) 11))
+(display "Test for modularized, even fibonnaci numbers till n:\n")
+(even-fibs-2 10)
+(newline)
+
+; enumerate: integers -> map: fib -> map: square -> accumulate: cons, ()
+(display "Squares of fibonnaci numbers: ")
+(define (list-fib-squares n)
+  (accumulate cons null (map square (map fib (enumerate-interval 0 n)))))
+(list-fib-squares 10)
+
+; Product of squares of odd numbers in a sequence
+; enumerate: integers -> filter: odd? -> map: square -> accumulate *, 1
+(display "Product of squares of first odd numbers < 10: ")
+(define (sum-squares-odd seq)
+  (accumulate * 1 (map square (filter odd? seq))))
+(sum-squares-odd (list 1 2 3 4 5))
+
+; Exercise 2.33
+
+; Defining map in-terms of accumulate
+(define (map-x f seq)
+  (accumulate (lambda (x y) (cons (f x) y)) null seq))
+; Test for map-x
+(display "Defined map in terms of accumulate: ")
+(map-x (lambda (x) (+ x 1)) (list 1 2 3 4))
+
+; Defining append in terms of accumulate
+(define (append-x seq1 seq2)
+  (accumulate cons seq2 seq1))
+; Test for append-x
+(display "Append in terms of accumulate: ")
+(append-x (list 1 2 3 4) (list 5 6 7 8))
+
+; Defining length in terms of accumulate
+(define (length-x seq)
+  (accumulate (lambda (x y) (+ 1 y)) 0 seq))
+(display "Length in terms of accumulate: ")
+(length-x (list 1 2 3 4))
+(newline)
+
+; Exercise 2.34
+
+; Horner's rule for evaluating a polynomial
+(define (horner-eval x seq)
+  (accumulate (lambda (this-coeff higher-terms)
+                (+ this-coeff (* x higher-terms)))
+              0
+              seq))
+(display "Horner evaluation of 1 + 3x + 5x^3 + x^5 at x = 2: ")
+(horner-eval 2 (list 1 3 0 5 0 1))
+(newline)
+
+; Exercise 2.35
+; Redefine count leaves as accumulation
+(define (count-leaves t)
+  (accumulate + 0 (map (lambda (x) 1) (enumerate-tree t))))
+; Test for the new counting leaves routine
+(display "Count leaves in a tree: ")
+(count-leaves (list (list 1 2) 3 (list 4 5 (list 6 7)) 8))
+(newline)
+
+; Exercise 2.36
+; accumulate n: Accumulate n lists
+(define (accumulate-n op init seqs)
+  (if (null? (car seqs))
+      null
+      (cons (accumulate op init (map car seqs))
+            (accumulate-n op init (map cdr seqs)))))
+; Test for accumulate-n
+(display "Accumulate n sequences: ")
+(accumulate-n + 0 (list (list 1 2 3)
+                        (list 4 5 6)
+                        (list 7 8 9)
+                        (list 10 11 12)))
+(newline)
+
+; Eercise 2.37
+; v is a vector, m is a matrix,
+(define my-vector-1 (list 1 2 3 4))
+(display "Vector #1 (v1): ")
+my-vector-1
+(define my-vector-2 (list 7 8 9 10))
+(display "Vector #2 (v2): ")
+my-vector-2
+(define my-matrix-1 (list (list 1 2 3 4)
+                          (list 4 5 6 6)
+                          (list 6 7 8 9)))
+(display "Matrix #1 (m1): ")
+my-matrix-1
+(define my-matrix-2 (list (list 1 2 3)
+                          (list 4 5 6)
+                          (list 6 7 8)
+                          (list 9 10 11)))
+(display "Matrix #2 (m2): ")
+my-matrix-2
+
+; Vector operations
+; Dot product
+(define (dot-product v w)
+  (accumulate + 0 (map * v w)))
+; Test for dot product
+(display "Dot product: (v1 . v2): ")
+(dot-product my-vector-1 my-vector-2)
+
+; Matrix vector product
+; matrix is a list of list
+(define (matrix-*-vector m v)
+  (map (lambda (row) (dot-product row v)) m))
+; Test
+(display "Matrix-vector multiplication (m1 * v1): ")
+(matrix-*-vector my-matrix-1 my-vector-1)
+
+; Transpose of a matrix:
+(define (transpose m)
+  (accumulate-n cons null m))
+; Test
+(display "Transpose of a matrix: ")
+(transpose my-matrix-1)
+
+; Matrix-matrix multiplication
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map (lambda (rows) (matrix-*-vector cols rows)) m)))
+(display "Matrix-matrix multiplication: ")
+(matrix-*-matrix my-matrix-1 my-matrix-2)
+(newline)
+
+; Exercise 2.38
+; fold-right is another name for accumulate
+; fold-left does it from the other way...
+(define fold-right accumulate)
+
+(define (fold-left op init seq)
+  (define (iter res rest)
+    (if (null? rest)
+        res
+        (iter (op res (car rest)) (cdr rest))))
+  (iter init seq))
+; Experiments
+(display "Start of fold-left and fold-right experiments\n")
+(fold-left / 1 (list 1 2 3)) ; yields 1/6
+(fold-right / 1 (list 1 2 3)) ; yields 3/2
+(fold-left list null (list 1 2 3)) ; yields '(((() 1) 2) 3)
+(fold-right list null (list 1 2 3)) ; yields '(1 (2 (3 ())))
+
+; If the operation (op) is commutative then both fold-right and fold-left
+; yield the same result (eg. a * b = b * a)
+(= (fold-left + 0 (list 1 2 3)) (fold-right + 0 (list 1 2 3)))
+(display "End of fold-left and fold-right experiments\n")
+(newline)
+
+; Exercise 2.39
+; Reversing a list using fold-right and fold-left
+(define (reverse-fr seq)
+  (fold-right (lambda (x y) (append y (list x))) null seq))
+(display "Test for fold-right reverse: ")
+(reverse-fr (list 1 2 3 4))
+
+(define (reverse-fl seq)
+  (fold-left (lambda (x y) (append (list y) x)) null seq))
+(display "Test for fold-left reverse: ")
+(reverse-fl (list 1 2 3 4))

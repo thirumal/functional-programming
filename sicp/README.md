@@ -92,3 +92,12 @@ Exercises and textbook examples
 	* Squaring every element of tree
 	* Using `map` to abstract and in turn create `tree-map`
 	* Power set of a given set, ![P(S)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Cmathcal%20P%20%5Cleft%28%7BS%7D%5Cright%29)
+* Sequences as conventional interfaces
+	* The need for conventional interfaces
+	* Accumulate, map, filter and enumerate interfaces
+	* Defining map, append and length of a sequence using accumulate
+	* Horner's rule for evaluating polynomials
+	* Accumulate-N design pattern
+	* Matrix and vector multiplications
+	* Fold-left and fold-right (a.k.a accumulate) operations
+	* Expressing reversal of a list in terms of fold-left and fold-right
