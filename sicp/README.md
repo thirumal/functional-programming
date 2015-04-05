@@ -45,7 +45,7 @@ Exercises and textbook examples
 	* Composition of functions: ![f o g(x)](http://latex.codecogs.com/png.latex?%5Cinline%20f%20%5Ccirc%20g%20%28x%29)
 	* Repeated application of a function: ![f(f(...(f(x))...))](http://latex.codecogs.com/png.latex?%5Cinline%20f%28f%28...%28f%28x%29%29...%29%29) or in other words ![f o f o ... f(x)](http://latex.codecogs.com/png.latex?%5Cinline%20f%20%5Ccirc%20f%20%5Ccirc%20...%20%5Ccirc%20f%28x%29)
 	* Approximating ![nroot(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%5Bn%5D%7Bx%7D) by repeated average damping
-	* Iterative improvement design pattern
+	* `iterative-improvement` design pattern
 
 ## Chapter 2: Building Abstractions with Data
 
@@ -94,10 +94,17 @@ Exercises and textbook examples
 	* Power set of a given set, ![P(S)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Cmathcal%20P%20%5Cleft%28%7BS%7D%5Cright%29)
 * Sequences as conventional interfaces
 	* The need for conventional interfaces
-	* Accumulate, map, filter and enumerate interfaces
+	* `accumulate`, `map`, `filter` and `enumerate` interfaces
 	* Defining map, append and length of a sequence using accumulate
 	* Horner's rule for evaluating polynomials
-	* Accumulate-N design pattern
+	* `accumulate-n` design pattern
 	* Matrix and vector multiplications
-	* Fold-left and fold-right (a.k.a accumulate) operations
+	* `fold-left` and `fold-right` (a.k.a accumulate) operations
 	* Expressing reversal of a list in terms of fold-left and fold-right
+* Nested mapping
+	* Generate all pairs (i j), such that ![1 <= j < i <= n](http://latex.codecogs.com/png.latex?1%20%5Cleq%20j%20%3C%20i%20%5Cleq%20n)
+	* `flatmap` design pattern
+	* Get all pairs which sum up to a prime number less than a given number
+	* Fetch all permutations of a set ![S](http://latex.codecogs.com/png.latex?S)
+	* Generate triplets (i j k) such that ![1 <= k < j < i <= n](http://latex.codecogs.com/png.latex?1%20%5Cleq%20k%20%3C%20j%20%3C%20i%20%5Cleq%20n)
+	* N-Queens problem of placing `N` queens on a `N * N` chess board

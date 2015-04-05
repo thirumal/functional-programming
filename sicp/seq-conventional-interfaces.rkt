@@ -1,5 +1,8 @@
 #lang racket
 
+; The above import is for prime? check
+(require math/number-theory)
+
 ; Helper routines
 (define (not-pair? x) (not (pair? x)))
 (define (square x) (* x x))
@@ -274,3 +277,161 @@ my-matrix-2
   (fold-left (lambda (x y) (append (list y) x)) null seq))
 (display "Test for fold-left reverse: ")
 (reverse-fl (list 1 2 3 4))
+(newline)
+
+; Nested mapping
+; Generate all pairs (i,j), where 1 <= j < i <= n
+(define (generate-pairs n)
+  (accumulate
+   append
+   null
+   (map (lambda (i)
+          (map (lambda (j) (list i j))
+               (enumerate-interval 1 (- i 1))))
+        (enumerate-interval 1 5))))
+(display "Generate pairs: ")
+(generate-pairs 5)
+(newline)
+
+; The above accumulate with append and null
+; and then mapping is so common that we call it flat map
+(define (flatmap proc seq)
+  (accumulate append null (map proc seq)))
+; Intution of what accumulate: append, null does:
+; > (accumulate append null (list (list) (list 1 (list 2 3)) (list) (list 4 5)))
+; '(1 (2 3) 4 5)
+
+; Intuition:
+; What flatmap does in a simple way is when you have a list of lists
+; it takes a function f and applies it to each list in the list
+; and appends them to form a single list
+
+; Example
+(display "Example of flatmapping: ")
+(flatmap (lambda (i)
+           (map (lambda (j) (list i j))
+                (enumerate-interval 1 (- i 1))))
+         (enumerate-interval 1 5))
+
+; Find all pairs less than N such that sum of the pairs is prime
+; (i,j) such that i + j is prime and 1 < i,j <= N
+
+; Helper routine #1: Sees if the sum of pairs is prime
+(define (prime-sum? pair)
+  (prime? (+ (car pair) (cadr pair))))
+
+; Helper routine #2: Given a pair (i j) generate a triple (i j i+j)
+(define (make-pair-sum pair)
+  (let ((head (car pair))
+        (tail (cadr pair)))
+    (list head tail (+ head tail))))
+
+; Putting all these things together
+(define (prime-sum-pairs n)
+  (map make-pair-sum
+       (filter prime-sum? (flatmap (lambda (i)
+                                     (map (lambda (j) (list i j))
+                                          (enumerate-interval 1 (- i 1))))
+                                   (enumerate-interval 1 n)))))
+; Test
+(display "Generate all prime sum pairs less than 5:\n")
+(prime-sum-pairs 5)
+(newline)
+
+; Removing an item from the list
+(define (remove item seq)
+  (filter (lambda (x) (not (= x item))) seq))
+(display "Removing 3 from (list 1 2 3 4 5): ")
+(remove 3 (list 1 2 3 4 5))
+(newline)
+
+; Program to return the permutations of a set
+; Say we have a set S with elements in it
+; For every item x in S, recursively generate sequences
+; of permutations of S - x (x removed from S) and finally
+; append x to the front of each list
+(define (permutation s)
+  (if (null? s)
+      (list null)
+      (flatmap (lambda (x)
+                 (map (lambda (p)
+                        (cons x p))
+                      (permutation (remove x s))))
+               s)))
+(display "Permutations of S = {1, 2, 3}: ")
+(permutation (list 1 2 3))
+(newline)
+
+; Exercise 2.40
+; Generate pairs (i j) where 1 <= j < i <= n
+(define (unique-pairs n)
+  (flatmap (lambda (i)
+             (map (lambda (j)
+                    (list i j))
+                  (enumerate-interval 1 (- i 1))))
+           (enumerate-interval 1 n)))
+(display "Pairs (i j) where 1 <= j < i <= n:\n")
+(unique-pairs 5)
+
+; Exercise 2.41
+; Generate triplets (i j k) such that 1 <= k < j < i <= n
+; and (i + j + k) === s
+(define (triplet-sum s n)
+  (filter (lambda (x)
+            (= s (+ (car x)
+                    (cadr x)
+                    (car (cdr (cdr x))))))
+          (flatmap (lambda (i)
+                     (flatmap (lambda (j)
+                            (map (lambda (k)
+                                   (list i j k))
+                                 (enumerate-interval 1 (- j 1))))
+                          (enumerate-interval 1 (- i 1))))
+                   (enumerate-interval 1 n))))
+(triplet-sum 6 5)
+(newline)
+
+; Exercise 2.42
+; n-queens problem
+
+(define (queens N)
+  ; Empty board
+  (define empty-board null)
+  ; Method that sees the existing placed queens
+  ; till k-1 and determines whether placing a
+  ; queen at k is safe or not...
+  ; TODO: Complete safe? routine
+  (define (safe? k positions) <???>)
+  ; Method that adjoins a new queen at position
+  ; (new-row k) along with the rest of the queens
+  (define (adjoin-position row col rest-of-queens)
+    (append rest-of-queens (list row col)))
+  ; Method that returns sequence of all ways to place
+  ; k queens in the first k columns of the board
+  (define (queen-cols k)
+    ; If empty board
+    (if (= k 0)
+        ; return an empty board with no queens
+        (list empty-board)
+        ; else, filter
+        (filter
+         ; only those boards who will be safe after
+         ; placing a queen at position k
+         (lambda (positions) (safe? k positions))
+         ; from the set of a new set of boards
+         ; built from the existing placed queens
+         (flatmap
+          ; where we have placed N queens in column k
+          ; along with the k-1 queens safely placed on the board
+          (lambda (rest-of-queens)
+            (map (lambda (new-row)
+                   ; place a queen at (new-row k) along with
+                   ; the rest of the queens
+                   (adjoin-position new-row k rest-of-queens))
+                   ; for every row in the board (N) for column k
+                   ; iterated by new-row using map
+                   (enumerate-interval 1 N)))
+          ; from the k-1 filled queen columns
+          (queen-cols (- k 1))))))
+  ; Call the procedure queen-cols on N sized board
+  (queen-cols N))
