@@ -372,6 +372,7 @@ my-matrix-2
            (enumerate-interval 1 n)))
 (display "Pairs (i j) where 1 <= j < i <= n:\n")
 (unique-pairs 5)
+(newline)
 
 ; Exercise 2.41
 ; Generate triplets (i j k) such that 1 <= k < j < i <= n
@@ -383,11 +384,12 @@ my-matrix-2
                     (car (cdr (cdr x))))))
           (flatmap (lambda (i)
                      (flatmap (lambda (j)
-                            (map (lambda (k)
-                                   (list i j k))
-                                 (enumerate-interval 1 (- j 1))))
-                          (enumerate-interval 1 (- i 1))))
+                                (map (lambda (k)
+                                       (list i j k))
+                                     (enumerate-interval 1 (- j 1))))
+                              (enumerate-interval 1 (- i 1))))
                    (enumerate-interval 1 n))))
+(display "Generating distinct triplets upto 5 that sum upto 6: ")
 (triplet-sum 6 5)
 (newline)
 
@@ -400,12 +402,24 @@ my-matrix-2
   ; Method that sees the existing placed queens
   ; till k-1 and determines whether placing a
   ; queen at k is safe or not...
-  ; TODO: Complete safe? routine
-  (define (safe? k positions) <???>)
+  (define (safe? k positions)
+    (let ((me (list-ref positions (- k 1)))
+          (others (filter (lambda (col)
+                            (not (= k (cdr col))))
+                          positions)))
+      (define (can-attack? q1 q2)
+        (or (= (car q1) (car q2))
+            (= (abs (- (car q1) (car q2)))
+               (abs (- (cdr q1) (cdr q2))))))
+      (define (iter queen list-of-queens)
+        (or (null? list-of-queens)
+            (and (not (can-attack? queen (car list-of-queens)))
+                 (iter queen (cdr list-of-queens)))))
+      (iter me others)))
   ; Method that adjoins a new queen at position
   ; (new-row k) along with the rest of the queens
-  (define (adjoin-position row col rest-of-queens)
-    (append rest-of-queens (list row col)))
+  (define (adjoin-position row col positions)
+   (append positions (list (cons row col))))
   ; Method that returns sequence of all ways to place
   ; k queens in the first k columns of the board
   (define (queen-cols k)
@@ -428,10 +442,19 @@ my-matrix-2
                    ; place a queen at (new-row k) along with
                    ; the rest of the queens
                    (adjoin-position new-row k rest-of-queens))
-                   ; for every row in the board (N) for column k
-                   ; iterated by new-row using map
-                   (enumerate-interval 1 N)))
+                 ; for every row in the board (N) for column k
+                 ; iterated by new-row using map
+                 (enumerate-interval 1 N)))
           ; from the k-1 filled queen columns
           (queen-cols (- k 1))))))
   ; Call the procedure queen-cols on N sized board
   (queen-cols N))
+(display "N Queens problem solutions for:\n")
+(display "1x1 Board: ")
+(queens 1)
+(display "2x2 Board: ")
+(queens 2)
+(display "3x3 Board: ")
+(queens 3)
+(display "4x4 Board: ")
+(queens 4)
