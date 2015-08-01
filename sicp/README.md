@@ -7,7 +7,7 @@ Exercises and textbook examples
 * Approximating ![sqrt(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%7Bx%7D) by Newton's method
 	* [Simple method](../../../blob/24d54bcd15e891d3746b673858d2a0fb636403b0/sicp/sqrt.rkt#L39)
 	* [Abstracted](../../../blob/9ae2218aa78370b016162b89e271aef9a2922561/sicp/sqrt-abstracted.rkt#L12-L23)
-* Approximating ![cube-root(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%5B3%5D%7Bx%7D) by Newton's method
+* [Approximating ![cube-root(x)](http://latex.codecogs.com/png.latex?%5Cinline%20%5Csqrt%5B3%5D%7Bx%7D) by Newton's method](../../../blob/b1706d8eb9114be67da6b6cc9d40f3721c33ee04/sicp/cuberoot.rkt#L12-L22)
 * Finding ![n!](http://latex.codecogs.com/png.latex?%5Cinline%20n%21)
 * Ackerman function
 * Fibonacci number
