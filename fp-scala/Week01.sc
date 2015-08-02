@@ -1,7 +1,7 @@
 import scala.annotation.tailrec
 
 object Week01 {
-	// Customary hello world
+  // Customary hello world
   println("Hello, Scala!")                        //> Hello, Scala!
   
   // you can use scala as a calculator
@@ -33,7 +33,7 @@ object Week01 {
   
   // compose functions from functions
   def sumOfSquares(x: Double, y: Double) = {
-  	square(x) + square(y)
+    square(x) + square(y)
   }                                               //> sumOfSquares: (x: Double, y: Double)Double
   
   sumOfSquares(3, 4)                              //> res5: Double = 25.0
@@ -103,115 +103,115 @@ object Week01 {
                                                   //> and: (x: Boolean, y: => Boolean)Boolean
   def or(x: Boolean, y: => Boolean) = if(x) true else y
                                                   //> or: (x: Boolean, y: => Boolean)Boolean
-	and(false, false)                         //> res17: Boolean = false
-	and(false, true)                          //> res18: Boolean = false
-	and(true, false)                          //> res19: Boolean = false
-	and(true, true)                           //> res20: Boolean = true
-	or(false, false)                          //> res21: Boolean = false
-	or(false, true)                           //> res22: Boolean = true
-	or(true, false)                           //> res23: Boolean = true
-	or(true, true)                            //> res24: Boolean = true
-	
-	// notice that second parameter to or and and are made call by name
-	// this helps us evaluate this function in short-circuit mode
-	// and terminate in non-terminating conditions (if possible)
-	def loop2: Boolean = loop2                //> loop2: => Boolean
-	or(true, loop2)                           //> res25: Boolean = true
-	and(false, loop2)                         //> res26: Boolean = false
-	
-	// block
-	// define a value outside the block
-	val m = 0                                 //> m  : Int = 0
-	// shadow the definition of m inside the block
-	val res = {
-		val m = 3
-		m * m
-	}                                         //> res  : Int = 9
-	// definition of m has been unchanged outside the block
-	m                                         //> res27: Int = 0
+  and(false, false)                               //> res17: Boolean = false
+  and(false, true)                                //> res18: Boolean = false
+  and(true, false)                                //> res19: Boolean = false
+  and(true, true)                                 //> res20: Boolean = true
+  or(false, false)                                //> res21: Boolean = false
+  or(false, true)                                 //> res22: Boolean = true
+  or(true, false)                                 //> res23: Boolean = true
+  or(true, true)                                  //> res24: Boolean = true
+  
+  // notice that second parameter to or and and are made call by name
+  // this helps us evaluate this function in short-circuit mode
+  // and terminate in non-terminating conditions (if possible)
+  def loop2: Boolean = loop2                      //> loop2: => Boolean
+  or(true, loop2)                                 //> res25: Boolean = true
+  and(false, loop2)                               //> res26: Boolean = false
+  
+  // block
+  // define a value outside the block
+  val m = 0                                       //> m  : Int = 0
+  // shadow the definition of m inside the block
+  val res = {
+    val m = 3
+    m * m
+  }                                               //> res  : Int = 9
+  // definition of m has been unchanged outside the block
+  m                                               //> res27: Int = 0
 
-	// very long expressions, can be expressed as below
-	val longexpr1 = (x
-					+ x)      //> longexpr1  : Int = 4
-	val longexpr2 = x +
-					 x        //> longexpr2  : Int = 4
-	
-	// complete square root example
-	// external dependency (square function, defined above)
-	def sqrt(x: Double): Double = {
-		// delta for comparision, don't go too low (lesser than double can represent)
-		val DELTA = 0.00000000000001
-		// Initial guess to use while starting the estimation
-		val INITIAL_GUESS = 1.0
-		// Function to check if guess is good enough?
-		def isGoodEnough(g: Double): Boolean = {
-			abs(square(g) / x - 1) < DELTA
-		}
-		// Function to improve the guess
-		def improveGuess(g: Double): Double = {
-			(g + x / g) / 2
-		}
-		// Recursive square root impelementation
-		def sqrtRecr(g: Double): Double = {
-			if(isGoodEnough(g)) g
-			else sqrtRecr(improveGuess(g))
-		}
-		// Call the recursive implementation
-		if(abs(x) < DELTA) { // x ~ 0
-			0.0
-		} else if(-x > DELTA) { // x < 0
-			throw new IllegalArgumentException(x + "< 0 ?")
-		} else { // x > 0
-			sqrtRecr(1.0)
-		}
-	}                                         //> sqrt: (x: Double)Double
-	
-	// tests for sqrt() routine
-	sqrt(0.0)                                 //> res28: Double = 0.0
-	sqrt(1e-6)                                //> res29: Double = 0.001
-	sqrt(1.0)                                 //> res30: Double = 1.0
-	sqrt(2.0)                                 //> res31: Double = 1.414213562373095
-	sqrt(64.0)                                //> res32: Double = 8.0
-	sqrt(100.0)                               //> res33: Double = 10.0
-	
-	// tail recursion
-	
-	// if a function calls itself as its last action, the function's stack frame
-	// can be reused. Hence your recursion depth does not increase
-	// this concept of writing a function in this fashion is called tail recursion
-	// the call made to itself inside a tail recursive function is called a tail-call
-	
-	// annonate tail recursive functions using the @tailrec
-	// don't forget to import this guy: import scala.annotation.tailrec
-	// for some reason eclipse worksheet does not terminate if I add this
-	// annotation
-	
-	// a good beginner's example of a tail recursive function is
-	// Euclid's algorithm for GCD
-	//@tailrec
-	def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+  // very long expressions, can be expressed as below
+  val longexpr1 = (x
+          + x)                                    //> longexpr1  : Int = 4
+  val longexpr2 = x +
+           x                                      //> longexpr2  : Int = 4
+  
+  // complete square root example
+  // external dependency (square function, defined above)
+  def sqrt(x: Double): Double = {
+    // delta for comparision, don't go too low (lesser than double can represent)
+    val DELTA = 0.00000000000001
+    // Initial guess to use while starting the estimation
+    val INITIAL_GUESS = 1.0
+    // Function to check if guess is good enough?
+    def isGoodEnough(g: Double): Boolean = {
+      abs(square(g) / x - 1) < DELTA
+    }
+    // Function to improve the guess
+    def improveGuess(g: Double): Double = {
+      (g + x / g) / 2
+    }
+    // Recursive square root impelementation
+    def sqrtRecr(g: Double): Double = {
+      if(isGoodEnough(g)) g
+      else sqrtRecr(improveGuess(g))
+    }
+    // Call the recursive implementation
+    if(abs(x) < DELTA) { // x ~ 0
+      0.0
+    } else if(-x > DELTA) { // x < 0
+      throw new IllegalArgumentException(x + "< 0 ?")
+    } else { // x > 0
+      sqrtRecr(1.0)
+    }
+  }                                               //> sqrt: (x: Double)Double
+  
+  // tests for sqrt() routine
+  sqrt(0.0)                                       //> res28: Double = 0.0
+  sqrt(1e-6)                                      //> res29: Double = 0.001
+  sqrt(1.0)                                       //> res30: Double = 1.0
+  sqrt(2.0)                                       //> res31: Double = 1.414213562373095
+  sqrt(64.0)                                      //> res32: Double = 8.0
+  sqrt(100.0)                                     //> res33: Double = 10.0
+  
+  // tail recursion
+  
+  // if a function calls itself as its last action, the function's stack frame
+  // can be reused. Hence your recursion depth does not increase
+  // this concept of writing a function in this fashion is called tail recursion
+  // the call made to itself inside a tail recursive function is called a tail-call
+  
+  // annonate tail recursive functions using the @tailrec
+  // don't forget to import this guy: import scala.annotation.tailrec
+  // for some reason eclipse worksheet does not terminate if I add this
+  // annotation
+  
+  // a good beginner's example of a tail recursive function is
+  // Euclid's algorithm for GCD
+  //@tailrec
+  def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
                                                   //> gcd: (a: Int, b: Int)Int
-	// try it out
-	gcd(14, 21)                               //> res34: Int = 7
-	
-	// Factorial
-	//
-	// this is not tail recursive because
-	// the last expression is pending evaluation when fact is called again
-	// for ex: fact(4) = 4 * (3 * fact(2)) 4 * 3 *... is still not evaluated
-	def fact(n: Int): Int = if(n == 0) 1 else n * fact(n - 1)
+  // try it out
+  gcd(14, 21)                                     //> res34: Int = 7
+  
+  // Factorial
+  //
+  // this is not tail recursive because
+  // the last expression is pending evaluation when fact is called again
+  // for ex: fact(4) = 4 * (3 * fact(2)) 4 * 3 *... is still not evaluated
+  def fact(n: Int): Int = if(n == 0) 1 else n * fact(n - 1)
                                                   //> fact: (n: Int)Int
-	fact(5)                                   //> res35: Int = 120
-	
-	// tail recursive version of factorial
-	//@tailrec
-	def factTR(n: Int): Int = {
-		//define an accumulator
-		def iter(acc: Int, r: Int): Int = {
-			if(r == 0) acc
-			else iter(acc * r, r - 1)
-		}
-		iter(1, n)
-	}                                         //> factTR: (n: Int)Int
-	factTR(5)                                 //> res36: Int = 120
+  fact(5)                                         //> res35: Int = 120
+  
+  // tail recursive version of factorial
+  //@tailrec
+  def factTR(n: Int): Int = {
+    //define an accumulator
+    def iter(acc: Int, r: Int): Int = {
+      if(r == 0) acc
+      else iter(acc * r, r - 1)
+    }
+    iter(1, n)
+  }                                               //> factTR: (n: Int)Int
+  factTR(5)                                       //> res36: Int = 120
 }
