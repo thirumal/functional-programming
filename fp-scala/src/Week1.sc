@@ -1,6 +1,6 @@
 import scala.annotation.tailrec
 
-object Week01 {
+object Week1 {
   // Customary hello world
   println("Hello, Scala!")                        //> Hello, Scala!
   
