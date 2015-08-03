@@ -104,7 +104,7 @@ object mod01_basics {
   addThirty(100)                                  //> res11: Int = 130
 
   /* Variable length arguments for a function */
-  /* TODO: Not so clear with map function's usage here... */
+  /* For every argument passed, capitalize it, and return an ArrayBuffer */
   def capitalizeAll(args: String*) = {
     args.map {
       arg => arg.capitalize
