@@ -30,5 +30,7 @@ This is still **incomplete**
 
 * [Example - Fixed Points](fp-scala/src/Week2_3.sc)
 
+* [Classes](fp-scala/src/Week2_567.sc)
+
 ## scala-school
 Things I coded up when I was working through Twitter's [Scala School](http://twitter.github.io/scala_school/) tutorial **(Incomplete)**
