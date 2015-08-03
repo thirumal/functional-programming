@@ -204,9 +204,9 @@ object Week01 {
   fact(5)                                         //> res35: Int = 120
   
   // tail recursive version of factorial
-  //@tailrec
   def factTR(n: Int): Int = {
     //define an accumulator
+    @tailrec
     def iter(acc: Int, r: Int): Int = {
       if(r == 0) acc
       else iter(acc * r, r - 1)
