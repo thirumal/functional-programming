@@ -29,7 +29,7 @@ object Exercise1 {
   def balance(ch: List[Char]): Boolean = {
     def iter(ch: List[Char], count: Int): Boolean = {
       if (ch.isEmpty)
-        true
+        count == 0
       else if (ch.head == '(')
         iter(ch.tail, count + 1)
       else if (ch.head == ')')
