@@ -1,4 +1,4 @@
-object Week3 {
+object Week3_1 {
 	/**
 	 * Abstract classes need not be completely defined
 	 * and also you cannot instantiate abstract classes

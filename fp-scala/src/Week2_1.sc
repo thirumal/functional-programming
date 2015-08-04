@@ -1,4 +1,4 @@
-object Week2 {
+object Week2_1 {
   // Higher order functions
   // lets you pass functions as arguments, return them as well.
   // such values are called first-class values
