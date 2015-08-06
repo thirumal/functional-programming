@@ -2,22 +2,22 @@ package week2
 
 object Week2_3 {
   // fixed point of a function
-  
+
   // a number x is called a fixed point of a function f if
   // f(x) = x
-  
+
   // we can locate a function's fixed point by starting with some guess
   // repetitively applying f
   // x, f(x), f(f(x)), ...
   // until we don't vary too much
-  
+
   val DELTA = 0.00001                             //> DELTA  : Double = 1.0E-5
   val INITIAL_GUESS = 1.0                         //> INITIAL_GUESS  : Double = 1.0
-  
+
   // Helper function
   def abs(x: Double): Double = if (x < 0) -x else x
                                                   //> abs: (x: Double)Double
-  
+
   def fixedPoint(f: Double => Double)(firstGuess: Double): Double = {
     // function to test if we need to iterate further?
     def isCloseEnough(x: Double, y: Double): Boolean = {
@@ -32,7 +32,7 @@ object Week2_3 {
     // finally call the recursive function we have
     iter(firstGuess)
   }                                               //> fixedPoint: (f: Double => Double)(firstGuess: Double)Double
-  
+
   // we know that fixed point of f(x) = 1 + x / 2 is 2
   fixedPoint(x => 1 + x / 2)(INITIAL_GUESS)       //> res0: Double = 1.999969482421875
 
