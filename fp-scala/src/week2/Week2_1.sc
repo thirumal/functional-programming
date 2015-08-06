@@ -1,3 +1,5 @@
+package week2
+
 object Week2_1 {
   // Higher order functions
   // lets you pass functions as arguments, return them as well.

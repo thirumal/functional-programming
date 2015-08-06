@@ -1,3 +1,5 @@
+package week2
+
 object Week2_3 {
   // fixed point of a function
   

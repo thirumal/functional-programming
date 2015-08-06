@@ -1,3 +1,5 @@
+package week2
+
 /**
  * 2. Purely Functional Sets.
  */

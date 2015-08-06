@@ -1,3 +1,5 @@
+package week2
+
 // i'm expecting folks to know what objects and classes are...
 // a better place to learn them would be
 // https://docs.oracle.com/javase/tutorial/java/concepts/index.html

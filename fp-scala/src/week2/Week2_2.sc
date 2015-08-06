@@ -1,3 +1,5 @@
+package week2
+
 object Week2_2 {
   // Currying
   
