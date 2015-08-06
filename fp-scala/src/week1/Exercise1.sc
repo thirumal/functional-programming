@@ -18,12 +18,12 @@ object Exercise1 {
     }
   }                                               //> printPascal: ()Unit
   printPascal()                                   //> Pascal's Triangle
-                                                  //| 1 
-                                                  //| 1 1 
-                                                  //| 1 2 1 
-                                                  //| 1 3 3 1 
-                                                  //| 1 4 6 4 1 
-                                                  //| 1 5 10 10 5 1 
+                                                  //| 1
+                                                  //| 1 1
+                                                  //| 1 2 1
+                                                  //| 1 3 3 1
+                                                  //| 1 4 6 4 1
+                                                  //| 1 5 10 10 5 1
 
   /**
    * Exercise 2
@@ -50,7 +50,7 @@ object Exercise1 {
                                                   //> res1: Boolean = true
   balance(":-)".toList) == false                  //> res2: Boolean = true
   balance("())(".toList) == false                 //> res3: Boolean = true
-  
+
   /**
    * Exercise 3
    */
@@ -64,7 +64,7 @@ object Exercise1 {
       countChange(money - coins.head, coins)
     }
   }                                               //> countChange: (money: Int, coins: List[Int])Int
-  
+
   //tests
   countChange(4,List(1,2)) == 3                   //> res4: Boolean = true
   countChange(300,List(5,10,20,50,100,200,500)) == 1022
