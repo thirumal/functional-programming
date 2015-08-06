@@ -1,3 +1,5 @@
+package week1
+
 object Exercise0 {
   /**
    * This method computes the sum of all elements in the list xs. There are

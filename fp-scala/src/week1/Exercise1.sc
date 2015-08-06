@@ -1,3 +1,5 @@
+package week1
+
 object Exercise1 {
   /**
    * Exercise 1
