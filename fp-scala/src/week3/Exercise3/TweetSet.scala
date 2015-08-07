@@ -1,4 +1,4 @@
-package Exercise3
+package week3.Exercise3
 
 /**
  * A class to represent tweets.

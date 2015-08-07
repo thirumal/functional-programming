@@ -1,4 +1,4 @@
-package Week3
+package week3
 
 object Week3_2 {
   println("Week3 - Part 2, Polymorphism")         //> Week3 - Part 2, Polymorphism
@@ -37,14 +37,17 @@ object Week3_2 {
   // type parameters are also valid for functions
   def singleton[T](elem: T) = {
     new Cons[T](elem, new Nil[T])
-  }
+  }                                               //> singleton: [T](elem: T)week3.Week3_2.Cons[T]
 
   // you can create singleton elements like below
-  singleton[Int](1)
-  singleton[Boolean](true)
+  singleton[Int](1)                               //> res0: week3.Week3_2.Cons[Int] = week3.Week3_2$$anonfun$main$1$Cons$1@1e643f
+                                                  //| af
+  singleton[Boolean](true)                        //> res1: week3.Week3_2.Cons[Boolean] = week3.Week3_2$$anonfun$main$1$Cons$1@6e
+                                                  //| 8dacdf
   // type can also be inferred automatically
   // by the compiler
-  singleton(2)
+  singleton(2)                                    //> res2: week3.Week3_2.Cons[Int] = week3.Week3_2$$anonfun$main$1$Cons$1@7a79be
+                                                  //| 86
 
   // all type parameters and arguments are
   // removed before evaluation
@@ -65,6 +68,6 @@ object Week3_2 {
     if (list.isEmpty) throw new ArrayIndexOutOfBoundsException("List is empty")
     else if (n == 0) list.head
     else nthElement(list.tail, n - 1)
-  }
+  }                                               //> nthElement: [T](list: week3.Week3_2.List[T], n: Int)T
 
 }

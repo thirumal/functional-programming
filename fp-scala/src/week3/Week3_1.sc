@@ -1,4 +1,4 @@
-package Week3
+package week3
 
 object Week3_1 {
 	/**

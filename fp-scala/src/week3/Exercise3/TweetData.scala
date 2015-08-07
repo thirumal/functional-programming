@@ -1,4 +1,4 @@
-package Exercise3
+package week3.Exercise3
 
 // real tweet data, collected on Oct 1
 object TweetData {

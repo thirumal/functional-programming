@@ -1,4 +1,4 @@
-package Exercise3
+package week3.Exercise3
 
 object TweetReader {
 
