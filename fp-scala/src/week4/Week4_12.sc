@@ -23,7 +23,7 @@ object Week4 {
     // instead of if (cond) { thenPart } else { elsePart }
     // it would be translated to cond.ifThenElse(thenPart, elsePart)
     def ifThenElse[T](thenPart: => T, elsePart: => T): T
-    
+
     // The && operator
     // Table:
     // f && f = f
@@ -57,7 +57,7 @@ object Week4 {
     // t != f = t
     // t != t = f
     def != (x: MyBoolean): MyBoolean = ifThenElse(!x, x)
-    
+
     // Exercise: implement '<' operator
     // assuming false < true
     // Table:
@@ -68,17 +68,17 @@ object Week4 {
     def < (x: MyBoolean): MyBoolean = ifThenElse(False, x)
     // ...
   }
-  
+
   // Now define the true object
   object True extends MyBoolean {
     def ifThenElse[T](thenPart: => T, elsePart: => T): T = thenPart
   }
-  
+
   // Now define the false object
   object False extends MyBoolean {
     def ifThenElse[T](thenPart: => T, elsePart: => T): T = elsePart
   }
-  
+
   // Our class for Int would be something like this
   abstract class MyInt {
     // Arithmetic operations
@@ -104,7 +104,7 @@ object Week4 {
     def == (that: Int): MyBoolean
     // .. similarly operations for !=, <, >, <=, >= are defined
   }
-  
+
   // Exercise 2: Implement the natural numbers class
   // Peano numbers
   abstract class Nat {
@@ -124,7 +124,7 @@ object Week4 {
       else throw new NoSuchElementException("Any non-negative number cannot be subtracted from zero")
     }
   }
-  
+
   // Class to represent the successor of a number
   class Succ(n: Nat) extends Nat {
     def isZero = false
@@ -146,9 +146,9 @@ object Week4 {
   square(10)                                      //> res1: Int = 100
 
   // Function types relate to classes and how function values relate to objects
-  
+
   // Are functions objects? Yes
-  
+
   // Function objects are treated as objects in Scala
   //
   // therefore the type A => B is an abbreviation for
@@ -158,7 +158,7 @@ object Week4 {
   trait Function1[A, B] {
     def apply(x: A): B
   }
-  
+
   // Similarly you have (A, B) => C defined as Function2 which might
   // be defined as follows
   // package scala
@@ -172,7 +172,7 @@ object Week4 {
   // So if we're defining a anonymous function like below
   // notice the type <function1>
   (x: Int) => x * x                               //> res2: Int => Int = <function1>
-  
+
   // in reality it is just a Anonymous class with the following
   // definition and we return that object to be used
   {
@@ -187,7 +187,7 @@ object Week4 {
     def apply(x: Int) = x * x
   }                                               //> res4: week4.Week4.Function1[Int,Int] = week4.Week4$$anonfun$main$1$$anon$1@
                                                   //| 511baa65
-  
+
   // So every function defined in Scala is just an object which extends the
   // FunctionN trait with an apply method()
   //
@@ -243,10 +243,4 @@ object Week4 {
                                                   //| e
 	List(1)                                   //> res6: week4.Week4.List[Int] = week4.Week4$$anonfun$main$1$Cons$1@30c7da1e
 	List(1,2)                                 //> res7: week4.Week4.List[Int] = week4.Week4$$anonfun$main$1$Cons$1@5b464ce8
-  
-  // Part 3:
-	// Two types of polymorphism
-	// 1) Subtyping
-	// 2) Generics
-	
 }
