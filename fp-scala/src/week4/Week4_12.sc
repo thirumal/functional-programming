@@ -1,7 +1,139 @@
 package week4
 
 object Week4 {
+  // Part 1:
+  // In a pure object oriented oriented language every value is an object
+  // and every operation is some method call on the object.
+  //
+  // This further implies that every type of each value is a class
+  // (as every value is an object)
+  //
+  // Conceptually types such as Int, MyBoolean don't receive any special treatment
+  // they can be treated as subclasses of the superclass AnyVal
+  // (defined in package scala)
+  //
+  // For the reasons of efficiency, in the end scala compiler represents
+  // the type scala.Int as 32-bit integer and scala.MyBoolean as Java's MyBoolean
+  // etc. (it is an optimization, improve interoperability between Scala and
+  // java code, conceptually types are still classes and values are objects)
+  //
+  // Here's how we might implement our MyBoolean class
 
+  abstract class MyBoolean {
+    // instead of if (cond) { thenPart } else { elsePart }
+    // it would be translated to cond.ifThenElse(thenPart, elsePart)
+    def ifThenElse[T](thenPart: => T, elsePart: => T): T
+    
+    // The && operator
+    // Table:
+    // f && f = f
+    // f && t = f
+    // t && f = f
+    // t && t = t
+    def && (x: => MyBoolean): MyBoolean = ifThenElse(x, False)
+    // The || operator
+    // Table:
+    // f || f = f
+    // f || t = t
+    // t || f = t
+    // t || t = t
+    def || (x: => MyBoolean): MyBoolean = ifThenElse(True, x)
+    // The ! operator
+    // Table:
+    // !f = t
+    // !t = f
+    def unary_! : MyBoolean = ifThenElse(False, True)
+    // The == operator
+    // Table:
+    // f == f = t
+    // f == t = f
+    // t == f = f
+    // t == t = t
+    def == (x: MyBoolean): MyBoolean = ifThenElse(x, !x)
+    // The != operator
+    // Table:
+    // f != f = f
+    // f != t = t
+    // t != f = t
+    // t != t = f
+    def != (x: MyBoolean): MyBoolean = ifThenElse(!x, x)
+    
+    // Exercise: implement '<' operator
+    // assuming false < true
+    // Table:
+    // f < f = f
+    // f < t = t
+    // t < f = f
+    // t < t = f
+    def < (x: MyBoolean): MyBoolean = ifThenElse(False, x)
+    // ...
+  }
+  
+  // Now define the true object
+  object True extends MyBoolean {
+    def ifThenElse[T](thenPart: => T, elsePart: => T): T = thenPart
+  }
+  
+  // Now define the false object
+  object False extends MyBoolean {
+    def ifThenElse[T](thenPart: => T, elsePart: => T): T = elsePart
+  }
+  
+  // Our class for Int would be something like this
+  abstract class MyInt {
+    // Arithmetic operations
+    def + (that: Double): Double
+    def + (that: Float): Float
+    def + (that: Long): Long
+    def + (that: Int): Int
+    // ... similarly operations for -, *, / and % are defined
+
+    // Shift operations
+    def << (cnt: Int): Int
+    // ... similarly operations for >>, >>> are defined
+
+    // Logical operations
+    def & (that: Long): Long
+    def & (that: Int): Int
+    // ... similarly operations for |, ^ are defined
+
+    // Comparision operations
+    def == (that: Double): MyBoolean
+    def == (that: Float): MyBoolean
+    def == (that: Long): MyBoolean
+    def == (that: Int): MyBoolean
+    // .. similarly operations for !=, <, >, <=, >= are defined
+  }
+  
+  // Exercise 2: Implement the natural numbers class
+  // Peano numbers
+  abstract class Nat {
+    def isZero: Boolean
+    def predecessor: Nat
+    def successor = new Succ(this)
+    def + (that: Nat): Nat
+    def - (that: Nat): Nat
+  }
+  // Object to represent zero
+  object Zero extends Nat {
+    def isZero = true
+    def predecessor: Nothing = throw new NoSuchElementException("Zero has no predecessor")
+    def + (that: Nat): Nat = that
+    def - (that: Nat): Nat = {
+      if(that.isZero) this
+      else throw new NoSuchElementException("Any non-negative number cannot be subtracted from zero")
+    }
+  }
+  
+  // Class to represent the successor of a number
+  class Succ(n: Nat) extends Nat {
+    def isZero = false
+    def predecessor = n
+    def + (that: Nat) = new Succ(n + that)
+    def - (that: Nat) = if (that.isZero) this else n - that.predecessor
+  }
+
+  // Part 2:
   // IMPORTANT: Before starting the session what you should know about
   // how apply() works. Here's a simple example
   // even though it is explained later on, with this thought
@@ -64,7 +196,7 @@ object Week4 {
   // apply itself is not an object.. or else we'd end up in an infinte loop of expansion
   //
   // Note that the definition of the method
-  // def f(x: Int): Boolean = ...
+  // def f(x: Int): MyBoolean = ...
   // by itself is not a function value (hence an object)
   //
   // only when f is used where a FunctionX type is expected, it is
@@ -75,7 +207,7 @@ object Week4 {
   //
   // or in other words it is expanded as
   //
-  // new Function1[Int, Boolean] {
+  // new Function1[Int, MyBoolean] {
   //   def apply(x: Int) = f(x)
   // }
   //
@@ -111,4 +243,10 @@ object Week4 {
                                                   //| e
 	List(1)                                   //> res6: week4.Week4.List[Int] = week4.Week4$$anonfun$main$1$Cons$1@30c7da1e
 	List(1,2)                                 //> res7: week4.Week4.List[Int] = week4.Week4$$anonfun$main$1$Cons$1@5b464ce8
+  
+  // Part 3:
+	// Two types of polymorphism
+	// 1) Subtyping
+	// 2) Generics
+	
 }
