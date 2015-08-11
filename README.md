@@ -14,17 +14,17 @@ This contains stuff I coded up while I was working through
 [Functional Programming in Scala](https://www.coursera.org/course/progfun) Coursera course.
 This is still **incomplete**
 
-### [Week 1](fp-scala/src/week1/Week1.sc)
+### Week 1
 
-* Expressions
+* [Expressions](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/fp-scala/src/week1/Week1.sc#L6-L45)
 
-* Evaluation statergies & Termination
+* [Evaluation statergies & Termination](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/fp-scala/src/week1/Week1.sc#L43-L65)
 
-* Conditionals and Value Definitions
+* [Conditionals and Value Definitions](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/fp-scala/src/week1/Week1.sc#L67-L122)
 
-* Blocks and Lexical Scope
+* [Blocks and Lexical Scope](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/fp-scala/src/week1/Week1.sc#L124-L177)
 
-* Tail Recursion
+* [Tail Recursion](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/fp-scala/src/week1/Week1.sc#L179-L219)
 
 ### Week 2
 
@@ -41,6 +41,16 @@ This is still **incomplete**
 * [Classes and Abstraction](fp-scala/src/week3/Week3_1.sc)
 
 * [Polymorphism](fp-scala/src/week3/Week3_2.sc)
+
+### Week 4
+
+* [Values and Functions as objects](fp-scala/src/week4/Week4_12.sc)
+
+* [Subtyping and Generics](fp-scala/src/week4/Week4_3.sc)
+
+* [Variance](src/week4/Week4_4.sc)
+
+* [Decomposition & Pattern Matching](fp-scala/src/week4/Week4_56.sc)
 
 -----------------------------------------------------------------------
 
