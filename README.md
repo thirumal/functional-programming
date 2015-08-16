@@ -52,6 +52,8 @@ This is still **incomplete**
 
 * [Decomposition & Pattern Matching](fp-scala/src/week4/Week4_56.sc)
 
+* [Lists](fp-scala/src/week4/Week4_7.sc) - An Introduction
+
 -----------------------------------------------------------------------
 
 ## scala-school
