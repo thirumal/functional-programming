@@ -56,11 +56,11 @@ This is still **incomplete**
 
 ### Week 5
 
-* [More Operations on Lists](fp-scala/src/week5/Week5_1.scala)
+* [More Operations on Lists](fp-scala/src/week5/Week5_1.sc)
 
-* [Pairs And Tuples](fp-scala/src/week5/Week5_2.scala)
+* [Pairs And Tuples](fp-scala/src/week5/Week5_2.sc)
 
-* [Implicit Parameters](fp-scala/src/week5/Week5_3.scala)
+* [Implicit Parameters](fp-scala/src/week5/Week5_3.sc)
 
 -----------------------------------------------------------------------
 
