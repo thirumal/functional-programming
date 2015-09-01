@@ -52,7 +52,13 @@ This is still **incomplete**
 
 * [Decomposition & Pattern Matching](fp-scala/src/week4/Week4_56.sc)
 
-* [Lists](fp-scala/src/week4/Week4_7.sc) - An Introduction
+* [Lists - An Introduction](fp-scala/src/week4/Week4_7.sc)
+
+### Week 5
+
+* [More Operations on Lists](fp-scala/src/week5/Week5_1.scala)
+
+* [Pairs And Tuples](fp-scala/src/week5/Week5_2.scala)
 
 -----------------------------------------------------------------------
 
