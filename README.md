@@ -60,6 +60,8 @@ This is still **incomplete**
 
 * [Pairs And Tuples](fp-scala/src/week5/Week5_2.scala)
 
+* [Implicit Parameters](fp-scala/src/week5/Week5_3.scala)
+
 -----------------------------------------------------------------------
 
 ## scala-school
