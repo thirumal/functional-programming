@@ -5,15 +5,15 @@ This is still **work in progress**
 
 ### Week 1
 
-* [Expressions](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L6-L45)
+* [Expressions](src/week1/Week1.sc#L6-L43)
 
-* [Evaluation statergies & Termination](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L43-L65)
+* [Evaluation statergies & Termination](src/week1/Week1.sc#L45-L67)
 
-* [Conditionals and Value Definitions](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L67-L122)
+* [Conditionals and Value Definitions](src/week1/Week1.sc#L69-L124)
 
-* [Blocks and Lexical Scope](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L124-L177)
+* [Blocks and Lexical Scope](src/week1/Week1.sc#L126-L179)
 
-* [Tail Recursion](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L179-L219)
+* [Tail Recursion](src/week1/Week1.sc#L181-L220)
 
 ### Week 2
 
@@ -62,3 +62,5 @@ This is still **work in progress**
 ### Week 6
 
 * [Other Collections](src/week6/Week6_1.sc)
+
+* [Combinatorial Search and For-Expressions](src/week6/Week6_2.sc)
