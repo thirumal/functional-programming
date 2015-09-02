@@ -9,16 +9,18 @@ object Week1 {
   // you can use scala as a calculator
   34 + 46                                         //> res0: Int(80) = 80
 
-  // this is how you define a variable
+  // Giving names to things...
+
+  // this is how you define an expression (evaluated every time).
   def radius = 10                                 //> radius: => Int
 
-  // another way of defining a variable
+  // another way is to use a value (evaluated once & stored. Retrieved this whenever referenced)
   val pi = 3.14159                                //> pi  : Double = 3.14159
 
-  // there's another way var, for some reason Odersky has not spoken about this
+  // there's another way var (mutable, variable), for some reason Odersky has not spoken about this
   // in his lectures for now
 
-  // this is an expression
+  // this is also an expression
   2 * pi * radius                                 //> res1: Double = 62.8318
 
   // define a function
@@ -186,7 +188,7 @@ object Week1 {
   // annonate tail recursive functions using the @tailrec
   // don't forget to import this guy: import scala.annotation.tailrec
   // for some reason eclipse worksheet does not terminate if I add this
-  // annotation
+  // annotation for the example below.
 
   // a good beginner's example of a tail recursive function is
   // Euclid's algorithm for GCD
