@@ -5,15 +5,15 @@ This is still **work in progress**
 
 ### Week 1
 
-* [Expressions](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/src/week1/Week1.sc#L6-L45)
+* [Expressions](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L6-L45)
 
-* [Evaluation statergies & Termination](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/src/week1/Week1.sc#L43-L65)
+* [Evaluation statergies & Termination](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L43-L65)
 
-* [Conditionals and Value Definitions](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/src/week1/Week1.sc#L67-L122)
+* [Conditionals and Value Definitions](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L67-L122)
 
-* [Blocks and Lexical Scope](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/src/week1/Week1.sc#L124-L177)
+* [Blocks and Lexical Scope](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L124-L177)
 
-* [Tail Recursion](../b4875711d2b0146584eca14be9bfa162a2c7b6d2/src/week1/Week1.sc#L179-L219)
+* [Tail Recursion](../../../blob/adc1fdac9d140f63ade46de60113d8de0825665c/fp-scala/src/week1/Week1.sc#L179-L219)
 
 ### Week 2
 
