@@ -54,3 +54,11 @@ This is still **work in progress**
 * [Higher-Order List Functions](src/week5/Week5_4.sc)
 
 * [Reduction on Lists](src/week5/Week5_5.sc)
+
+* Reasoning about Concat (mathematical)
+
+* Larger Equational Proofs on Lists (mathematical)
+
+### Week 6
+
+* [Other Collections](src/week6/Week6_1.sc)
