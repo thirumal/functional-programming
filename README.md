@@ -62,9 +62,4 @@ This is still **incomplete**
 
 * [Implicit Parameters](fp-scala/src/week5/Week5_3.sc)
 
------------------------------------------------------------------------
-
-## scala-school
-Things I coded up when I was working through Twitter's [Scala School](http://twitter.github.io/scala_school/) tutorial **(Incomplete)**
-
------------------------------------------------------------------------
+* [Higher-Order List Functions](fp-scala/src/week5/Week5_4.sc)
