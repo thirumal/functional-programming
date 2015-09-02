@@ -99,7 +99,8 @@ object Week5_5 {
   // Exercise
   // Concatenation function that joins two lists
   def concat[T](xs: List[T], ys: List[T]): List[T] = (xs foldRight ys)(_ :: _)
-  concat(List(1, 2, 3), List(4, 5, 6))
+                                                  //> concat: [T](xs: List[T], ys: List[T])List[T]
+  concat(List(1, 2, 3), List(4, 5, 6))            //> res5: List[Int] = List(1, 2, 3, 4, 5, 6)
   // You cannot replace foldLeft with foldRight above.
   // Because :: cannot be applied on (List[T],T), it can only be applied on
   // (T, List[T])
