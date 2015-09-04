@@ -64,3 +64,5 @@ This is still **work in progress**
 * [Other Collections](src/week6/Week6_1.sc)
 
 * [Combinatorial Search and For-Expressions](src/week6/Week6_2.sc)
+
+* [Combinatorial Search Example & Sets](src/week6/Week6_3.sc)
