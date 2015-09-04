@@ -72,3 +72,5 @@ This is still **work in progress**
 * [Translation of for (Implementation)](src/week6/Week6_5.sc)
 
 * [Maps](src/week6/Week6_6.sc)
+
+* [Putting it all together](src/week6/Week6_7.sc)
