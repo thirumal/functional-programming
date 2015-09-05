@@ -80,3 +80,5 @@ This is still **work in progress**
 * Structural Induction on Lists (mathematical)
 
 * [Streams](src/week7/Week7_2.sc)
+
+* [Lazy Evaluation and Infinite Sequences](src/week7/Week7_34.sc)
