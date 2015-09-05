@@ -67,7 +67,7 @@ This is still **work in progress**
 
 * [Combinatorial Search Example & Sets](src/week6/Week6_3.sc)
 
-* [Queries with For-Expressions](src/week6/week6_4.sc)
+* [Queries with For-Expressions](src/week6/Week6_4.sc)
 
 * [Translation of for (Implementation)](src/week6/Week6_5.sc)
 
