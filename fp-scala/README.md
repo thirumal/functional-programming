@@ -77,7 +77,7 @@ This contains stuff I coded up while I was working through [Functional Programmi
 
 ### Week 7
 
-* Structural Induction on Lists (mathematical)
+* Structural Induction on Trees (mathematical)
 
 * [Streams](src/week7/Week7_2.sc)
 
