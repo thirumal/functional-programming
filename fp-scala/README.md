@@ -74,3 +74,9 @@ This is still **work in progress**
 * [Maps](src/week6/Week6_6.sc)
 
 * [Putting it all together](src/week6/Week6_7.sc)
+
+### Week 7
+
+* Structural Induction on Lists (mathematical)
+
+* [Streams](src/week7/Week7_2.sc)
