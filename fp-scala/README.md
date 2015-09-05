@@ -82,3 +82,5 @@ This is still **work in progress**
 * [Streams](src/week7/Week7_2.sc)
 
 * [Lazy Evaluation and Infinite Sequences](src/week7/Week7_34.sc)
+
+* [Water Pouring Problem](src/week7/Pouring.scala)
