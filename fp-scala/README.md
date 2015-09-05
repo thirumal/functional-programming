@@ -1,7 +1,7 @@
 ## fp-scala
-This contains stuff I coded up while I was working through
-[Functional Programming in Scala](https://www.coursera.org/course/progfun) Coursera course.
-This is still **work in progress**
+This contains stuff I coded up while I was working through [Functional Programming in Scala](https://www.coursera.org/course/progfun) Coursera course.
+
+**NOTE:** Changes from now on will usually include corrections, I have removed the **WIP** tag.
 
 ### Week 1
 
